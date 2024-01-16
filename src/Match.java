@@ -3,6 +3,8 @@ public class Match {
     Fighter f2;
     int minWeight;
     int maxWeight;
+    boolean turn = false;
+    boolean firstStat = true;
 
     Match(Fighter f1, Fighter f2, int minWeight, int maxWeight) {
         this.f1 = f1;
@@ -14,8 +16,13 @@ public class Match {
     void run() {
         if (checkWeight()) {
             while (this.f1.hp > 0 && this.f2.hp > 0) {
-                System.out.println("=====YENİ ROUND=====");
-                if (isFirst()) {
+                System.out.println("");
+                System.out.println("=====YENİ TUR=====");
+                if (firstStat) {
+                    turn = isFirst();
+                    firstStat = false;
+                }
+                if (turn) {
                     this.f2.hp = this.f1.hit(f2);
                     if (isWin()) {
                         break;
@@ -26,6 +33,7 @@ public class Match {
                         break;
                     }
                 }
+                turn = !turn;
                 printScore();
             }
         } else {

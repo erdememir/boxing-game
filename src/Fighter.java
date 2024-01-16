@@ -14,7 +14,6 @@ public class Fighter {
     }
 
     int hit(Fighter foe) {
-        System.out.println("---------------");
         System.out.println(this.name + " ==> " + foe.name + " " + this.dmg + " hasar vurdu.");
         if (foe.isDodge()) {
             System.out.println(foe.name + " gelen hasarı savuşturdu.");
