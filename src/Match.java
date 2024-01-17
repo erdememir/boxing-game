@@ -15,27 +15,30 @@ public class Match {
 
     void run() {
         if (checkWeight()) {
+            turn = isFirst();
             while (this.f1.hp > 0 && this.f2.hp > 0) {
                 System.out.println("");
                 System.out.println("=====YENİ TUR=====");
-                if (firstStat) {
-                    turn = isFirst();
-                    firstStat = false;
-                }
                 if (turn) {
                     this.f2.hp = this.f1.hit(f2);
                     if (isWin()) {
                         break;
                     }
+                    this.f1.hp = this.f2.hit(f1);
                 } else {
                     this.f1.hp = this.f2.hit(f1);
                     if (isWin()) {
                         break;
                     }
+                    this.f2.hp = this.f1.hit(f2);
+                }
+                if (isWin()) {
+                    break;
                 }
                 turn = !turn;
                 printScore();
             }
+
         } else {
             System.out.println("Sporcuların ağırlıkları birbiriyle uyumlu değil.");
         }
